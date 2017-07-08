@@ -22,7 +22,7 @@ f = open(filename, 'a')
 x = range_num
 y = len(Alphabet)
 amount = math.pow(y, x)
-total_items = math.pow(y, x)
+total_items = amount
 for CharLength in range(range_num, stopper):
     passwords = (itertools.product(Alphabet, repeat = CharLength))
 
@@ -31,14 +31,7 @@ for CharLength in range(range_num, stopper):
         percentage = (counter / total_items) * 100
         amount -= 1
         i = str(i)
-        i = i.replace("[", "")
-        i = i.replace("]", "")
-        i = i.replace("'", "")
-        i = i.replace(" ", "")
-        i = i.replace(",", "")
-        i = i.replace("(", "")
-        i = i.replace(")", "")
-        f.write(i)
+        f.write(i[0])
         f.write('\n')
         print "Password: %r\tPercentage: %r/100\tAmount left: %r" % (i, int(percentage), amount)
         if i == '0'* range_num:
