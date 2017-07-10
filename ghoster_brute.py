@@ -15,29 +15,31 @@ range_num = int(raw_input("Enter range: "))
 stopper = range_num + 1
 filename = "bruteforce_%r.txt" % (range_num)
 f = open(filename, 'a')
-#n_1 = len(Alphabet)
-#n_2 = n_1 - 1 # <-- total useless peice of garbage that could of been great in vurtual life
-#n_3 = '0' * n_2
-#n = '1' + n_3
 x = range_num
 y = len(Alphabet)
 amount = math.pow(y, x)
-total_items = amount
+total_items = math.pow(y, x)
 for CharLength in range(range_num, stopper):
     passwords = (itertools.product(Alphabet, repeat = CharLength))
 
-    for i in passwords:
-        counter += 1
-        percentage = (counter / total_items) * 100
-        amount -= 1
-        i = str(i)
-        f.write(i[0])
-        f.write('\n')
-        print "Password: %r\tPercentage: %r/100\tAmount left: %r" % (i, int(percentage), amount)
-        if i == '0'* range_num:
+	for i in passwords:
+		counter += 1
+		percentage = (counter / total_items) * 100
+		amount -= 1
+		i = str(i)
+		i = i.replace("[", "")
+		i = i.replace("]", "")
+		i = i.replace("'", "")
+		i = i.replace(" ", "")
+		i = i.replace(",", "")
+		i = i.replace("(", "")
+		i = i.replace(")", "")
+        f.write(i)
+		f.write('\n')
+		print "Password: %r\tPercentage: %r/100\tAmount left: %r" % (i, int(percentage), amount)
+		if i == '0'* range_num:
             print "*Done"
-            f.close()
-            exit(0)
-        else:
-            pass
-
+			f.close()
+			exit(0)
+		else:
+			pass
